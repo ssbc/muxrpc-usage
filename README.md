@@ -1,4 +1,13 @@
 
+# muxrpc-usage
+
+nice helpful usage messages for muxrpc
+
+## data structure
+
+muxrpc commands need to return a data structure describing their commands and options.
+`muxrpc-usage` can then render it into helpful commands.
+
 {
   <group>: {
     type: 'group'
