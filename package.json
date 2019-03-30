@@ -1,0 +1,19 @@
+{
+  "name": "muxrpc-usage",
+  "description": "",
+  "version": "1.0.0",
+  "homepage": "https://github.com/dominictarr/muxrpc-usage",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dominictarr/muxrpc-usage.git"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "scripts": {
+    "test": "tape test/*.js"
+  },
+  "author": "Dominic Tarr <dominic.tarr@gmail.com> (http://dominictarr.com)",
+  "license": "MIT"  
+}
