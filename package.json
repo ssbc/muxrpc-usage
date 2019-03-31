@@ -7,7 +7,9 @@
     "type": "git",
     "url": "ssb://%2BsSXbrBHKAsUGxjUpB+rGkrpEoDLiUBI+FWvv9gBh4=.sha256"
   },
-  "dependencies": {},
+  "dependencies": {
+    "right-pad": "^1.0.1"
+  },
   "devDependencies": {},
   "scripts": {
     "test": "tape test/*.js"
