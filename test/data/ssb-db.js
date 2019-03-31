@@ -46,28 +46,31 @@ var Private = {
 }
 
 module.exports = {
-  createLogStream: {
-    type: "source",
-    description: 'stream of all locally stored messages, in order received',
-    args:
-      Object.assign(rangeArgs('timestamp'), keysValues)
-  },
-  get: {
-    type: "async",
-    description: 'retrive a locally stored message',
-    args: {
-      id: MessageId,
-      private: Private,
-      meta: {
-        type: 'boolean',
-        description: 'include key,value,timestamp defaults to false'
+  description: 'append-only log database',
+  commands: {
+    createLogStream: {
+      type: "source",
+      description: 'stream of all locally stored messages, in order received',
+      args:
+        Object.assign(rangeArgs('timestamp'), keysValues)
+    },
+    get: {
+      type: "async",
+      description: 'retrive a locally stored message',
+      args: {
+        id: MessageId,
+        private: Private,
+        meta: {
+          type: 'boolean',
+          description: 'include key,value,timestamp defaults to false'
+        }
       }
+    },
+    publish: {
+      type: 'async',
+      description: 'publish a message',
+      args: {}
     }
-  },
-  publish: {
-    type: 'async',
-    description: 'publish a message',
-    args: {}
   }
 }
 
