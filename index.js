@@ -44,11 +44,11 @@ exports.deep = function (api, path, prefix) {
 
   if(isCommand(object))
     return (
-      (prefix.concat(path)).join('.') + ' # ' + object.description + '\n' +
+      [(prefix.concat(path)).join('.') + ' # ' + object.description,
         align(Object.keys(object.args).map(function (key) {
           var arg = object.args[key]
           return ['  ' + '--' + key,  '[' + arg.type + (arg.optional ? ']?' : ']') ,  '# ' + object.args[key].description]
-        }))
+        }))].filter(Boolean).join('\n')
     ) + '\n'
   else {
     return Object.keys(object).map(function (key) {
@@ -56,6 +56,4 @@ exports.deep = function (api, path, prefix) {
     }).join('\n')
   }
 }
-
-
 
