@@ -50,7 +50,42 @@ list the commands available at a level, to be used as a quick reminder when a us
 mistypes a command for example.
 
 ```
+> sbot foo #there is no foo command
+createLogStream|get|publish|...
+```
+
+### deep
+
+show everything about a command or group
 
 ```
+> sbot gossip --help
+gossip.add # add peer to table
+  --id      [FeedId]?             # An ssb feed identity
+  --address [MultiServerAddress]? # a multiserver address of an ssb peer
+
+gossip.rm # remove peer from table
+  --id      [FeedId]?             # An ssb feed identity
+  --address [MultiServerAddress]? # a multiserver address of an ssb peer
+
+gossip.connect # connect to a peer
+  --id      [FeedId]?             # An ssb feed identity
+  --address [MultiServerAddress]? # a multiserver address of an ssb peer
+
+gossip.disconnect # disconnect from a peer
+  --id      [FeedId]?             # An ssb feed identity
+  --address [MultiServerAddress]? # a multiserver address of an ssb peer
+
+gossip.changes # stream of changes to peers table
+
+gossip.reconnect # reconnect to all peers
+
+gossip.disable # disable gossip
+
+gossip.enable # enable gossip
+
+```
+
+
 
 
