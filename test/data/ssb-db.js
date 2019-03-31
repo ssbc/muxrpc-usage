@@ -71,8 +71,6 @@ module.exports = {
   }
 }
 
-console.log(module.exports)
-
 //ways to call usage:
 
 //quick: lists commands, or help
@@ -92,6 +90,4 @@ help:
   command1.bar --{blah,...}
 
 */
-
-
 

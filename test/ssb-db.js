@@ -1,6 +1,6 @@
 
 var usage = require('../')
-var ssbDb = require('../ssb-db')
+var ssbDb = require('./data/ssb-db')
 
 var tape = require('tape')
 
