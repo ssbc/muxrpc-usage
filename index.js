@@ -1,8 +1,21 @@
-var nested = require('libnested')
+//var nested = require('libnested')
 var pad = require('right-pad')
 
 function isCommand (o) {
   return o.type && o.args
+}
+
+function isGroup (o) {
+  return o.commands
+}
+
+function get(object, path) {
+  for(var i = 0; i < path.length; i++) {
+    if(isGroup(object))
+      object = object.commands[path[i]]
+    else return
+  }
+  return object
 }
 
 function isEmpty (o) {
@@ -10,17 +23,25 @@ function isEmpty (o) {
   return true
 }
 
+exports.get = function (api, path) {
+  return get(api, path || [])
+}
+
+exports.isGroup = isGroup
+exports.isCommand = isCommand
+
 exports.quick = function (api, path) {
   if(path == true)
-    return Object.keys(api).map(function (key) {
-      return (key + ' ' + exports.quick(api[key])).trim()
+    return Object.keys(api.commands).map(function (key) {
+      return (key + ' ' + exports.quick(api.commands[key])).trim()
     }).join('\n')
 
-  var object = nested.get(api, path || [])
+  var object = get(api, path || [])
   if(isCommand(object))
     return isEmpty(object.args) ? '' : ('--'+Object.keys(object.args).join('|'))
-  else
-    return Object.keys(object).join('|')
+  else {
+    return Object.keys(object.commands).join('|')
+  }
 }
 
 function align (rows) {
@@ -40,7 +61,7 @@ function align (rows) {
 
 exports.deep = function (api, path, prefix) {
   prefix = prefix || []
-  var object = nested.get(api, path || [])
+  var object = get(api, path || [])
 
   if(isCommand(object))
     return (
@@ -51,9 +72,10 @@ exports.deep = function (api, path, prefix) {
         }))].filter(Boolean).join('\n')
     ) + '\n'
   else {
-    return Object.keys(object).map(function (key) {
+    return Object.keys(object.commands).map(function (key) {
       return exports.deep(api, (path || []).concat(key), prefix)
     }).join('\n')
   }
 }
+
 
