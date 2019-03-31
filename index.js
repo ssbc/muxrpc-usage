@@ -38,17 +38,24 @@ function align (rows) {
   }).join('\n')
 }
 
-exports.deep = function (api, path) {
-
+exports.deep = function (api, path, prefix) {
+  prefix = prefix || []
   var object = nested.get(api, path || [])
 
   if(isCommand(object))
     return (
-      path.join('.') + ' # ' + object.description + '\n' +
+      (prefix.concat(path)).join('.') + ' # ' + object.description + '\n' +
         align(Object.keys(object.args).map(function (key) {
           var arg = object.args[key]
           return ['  ' + '--' + key,  '[' + arg.type + (arg.optional ? ']?' : ']') ,  '# ' + object.args[key].description]
         }))
     ) + '\n'
+  else {
+    return Object.keys(object).map(function (key) {
+      return exports.deep(api, (path || []).concat(key), prefix)
+    }).join('\n')
+  }
 }
+
+
 
