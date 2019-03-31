@@ -8,6 +8,7 @@ nice helpful usage messages for muxrpc
 muxrpc commands need to return a data structure describing their commands and options.
 `muxrpc-usage` can then render it into helpful commands.
 
+``` js
 {
   <group>: {
     type: 'group'
@@ -33,11 +34,4 @@ muxrpc commands need to return a data structure describing their commands and op
   }
 
 }
-
-
-
-
-
-
-
-
+```
