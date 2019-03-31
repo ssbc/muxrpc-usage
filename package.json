@@ -5,7 +5,7 @@
   "homepage": "https://github.com/dominictarr/muxrpc-usage",
   "repository": {
     "type": "git",
-    "url": "git://github.com/dominictarr/muxrpc-usage.git"
+    "url": "ssb://%2BsSXbrBHKAsUGxjUpB+rGkrpEoDLiUBI+FWvv9gBh4=.sha256"
   },
   "dependencies": {},
   "devDependencies": {},
