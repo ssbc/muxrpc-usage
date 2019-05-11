@@ -47,4 +47,20 @@ rmws(
 })
 
 
+tape('deep tests based on ssb-db', function (t) {
+
+  var text = usage.deep(ssbDb, ['get'])
+  console.log(text)
+  t.equal(rmws(text),
+rmws(
+`get {id} # retrive a locally stored message
+  --id [MessageId] # ssb message identity
+  --private [boolean=false]? # decrypt private messages, defaults to false
+  --meta [boolean=false]? # include key,value,timestamp, defaults to false
+`))
+
+  t.end()
+
+})
+
 

@@ -36,13 +36,16 @@ var keysValues = {
 }
 
 var MessageId = {
-  type: 'string',
+  type: 'MessageId',
+  description: 'ssb message identity',
   test: /^%[a-zA-Z0-9\+\/]+={0,2}\.\w+$/
 }
 
 var Private = {
   type: 'boolean',
-  description: 'decrypt private messages, defaults to false'
+  description: 'decrypt private messages, defaults to false',
+  optional: true,
+  default: false
 }
 
 module.exports = {
@@ -57,12 +60,15 @@ module.exports = {
     get: {
       type: "async",
       description: 'retrive a locally stored message',
+      single: 'id',
       args: {
         id: MessageId,
         private: Private,
         meta: {
           type: 'boolean',
-          description: 'include key,value,timestamp defaults to false'
+          description: 'include key,value,timestamp, defaults to false',
+          optional: true,
+          default: false
         }
       }
     },
