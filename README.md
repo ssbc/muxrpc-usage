@@ -14,6 +14,7 @@ muxrpc commands need to return a data structure describing their commands and op
   commands: {
     <Group>: {
       description: description_of_group,
+      single: <name>?, //optional, name of option used if called a single positional arg, without --
       commands: {
         <name>: <subgroup|command>,...
       }
@@ -25,6 +26,7 @@ muxrpc commands need to return a data structure describing their commands and op
         <arg>: {
           type: name_of_type,
           optional: boolean,
+          default: string, //default value 
           decription: <text>
         },...
       },
@@ -85,7 +87,4 @@ gossip.disable # disable gossip
 gossip.enable # enable gossip
 
 ```
-
-
-
 
