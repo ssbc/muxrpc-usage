@@ -59,16 +59,26 @@ function align (rows) {
   }).join('\n')
 }
 
+function maybeSingle (object) {
+  if(isEmpty(object.args)) return ''
+  if(object.single) return ' {'+object.single+'}'
+  return ''
+}
+
+function maybeDefault (arg) {
+  return (Object.hasOwnProperty.call(arg, 'default') ? '='+arg.default : '')
+}
+
 exports.deep = function (api, path, prefix) {
   prefix = prefix || []
   var object = get(api, path || [])
 
   if(isCommand(object))
     return (
-      [(prefix.concat(path)).join('.') + ' # ' + object.description,
+      [(prefix.concat(path)).join('.') + maybeSingle(object) + ' # ' + object.description,
         align(Object.keys(object.args).map(function (key) {
           var arg = object.args[key]
-          return ['  ' + '--' + key,  '[' + arg.type + (arg.optional ? ']?' : ']') ,  '# ' + object.args[key].description]
+          return ['  ' + '--' + key,  '[' + arg.type + maybeDefault(arg) + (arg.optional ? ']?' : ']') ,  '# ' + object.args[key].description]
         }))].filter(Boolean).join('\n')
     ) + '\n'
   else {
@@ -77,5 +87,8 @@ exports.deep = function (api, path, prefix) {
     }).join('\n')
   }
 }
+
+
+
 
 
